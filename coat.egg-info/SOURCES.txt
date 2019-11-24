@@ -1,3 +1,5 @@
+README.md
+setup.cfg
 setup.py
 coat/ImageCoating.py
 coat/__init__.py

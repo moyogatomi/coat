@@ -1,0 +1,1 @@
+from coat.ImageCoating import Coat, Montage

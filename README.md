@@ -1,18 +1,66 @@
 # Coat
 ---
-__Coat__ is small wrapper that sits on __numpy__'s ndarray (*subclassed*) and __opencv__
+__Coat__ is small wrapper that sits on __numpy__'s ndarray (*subclassed*) and __opencv__\
  Coat's only purpouse is for rapid prototyping
 
 ---
 ### Style
 
-__Coat__ is using method cascading
-return from every method is __Coat__ instance
-Only exception is method classic() which returns back numpy instance
+__coat__ is using method cascading\
+return from every method is __Coat__ instance\
+Only exception is method classic() which returns back numpy instance\
+
+### Install
+
+preferably use virtual env
+
+```bash
+pip install coat
+
+```
+
+### Demo
+
+function __Coat__ is a proxy function that handles different types of args.
+
+It handles str(url), list/generator of images and ndarray. 
+
+
+```python
+from coat import Coat
+
+url = "https://natgeo.imgix.net/subjects/headers/shutterstock_276228476.jpg?auto=compress,format&w=1920&h=960&fit=crop"
+Coat(url).thresh(125,255).show()
+
+```
+![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/earth_thresh.jpg)
+
+
+## Usage
+
+
+__content__
+
+[Core functionalities](#Core-functionalities)
+[Dominance](#Auto-resolver)
+[Array manipulation](#Array-manipulation)
+[Image downloading](#Download-image)
+[Labeling](#Supports-labeling)
+[Color spaces](#Colorspace-change)
+[Helper functions](#Image-processing-helpers)
+[Montage](#Montage)
+[Contours](#Contours)
+[Color filtering](#Replace-particular-color)
+[Motion difference](#Motion-difference)
+
+---
 
 ### Core functionalities
 Lets define two arrays of different type, size and dimension
 ```python
+# Import Coat(proxy function) and Montage
+from coat import Coat, Montage
+
 array1 = Coat(np.zeros(shape=[40,60,3],dtype=np.uint8))
 array2 = Coat(np.zeros(shape=[8,8],dtype=np.float32))
 ```
@@ -75,13 +123,13 @@ array2.osize(array1.shape).shape
 >>> (40, 60)
 ```
 
-# rsize as relative size
+##### rsize as relative size
 ```python
 res = array2.rsize(fx = 2, fy=0.5)
 res.shape
 >>> (16, 4)
 ```
-###### ImageCoat object is fully compatible with ndarrays
+###### ndarray compatibility
 ```python
 res = array1 + np.zeros(shape=array1.shape)
 np.uint8(array1) # -> returns back Coat instance with changed datatype

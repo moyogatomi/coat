@@ -2,10 +2,11 @@ Metadata-Version: 1.1
 Name: coat
 Version: 0.1
 Summary: Wrapper around ndarray and opencv for rapid prototyping
-Home-page: UNKNOWN
+Home-page: https://github.com/moyogatomi/coat
 Author: moyogatomi
 Author-email: moyogatomi@gmail.com
 License: MIT
+Download-URL: https://github.com/moyogatomi/coat/blob/master/dist/coat-0.1.tar.gz
 Description: UNKNOWN
 Keywords: ndarray,opencv,prototyping,image processing
 Platform: UNKNOWN
