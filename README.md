@@ -59,6 +59,7 @@ Lets define two arrays of different type, size and dimension
 ```python
 # Import Coat(proxy function) and Montage
 from coat import Coat, Montage
+import numpy as np
 
 array1 = Coat(np.zeros(shape=[40,60,3],dtype=np.uint8))
 array2 = Coat(np.zeros(shape=[8,8],dtype=np.float32))
