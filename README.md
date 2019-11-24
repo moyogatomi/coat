@@ -6,8 +6,8 @@ __Coat__ is small wrapper that sits on __numpy__'s ndarray (*subclassed*) and __
 ---
 ### Style
 
-__coat__ is using method cascading\
-return from every method is __Coat__ instance\
+__Coat__ is using method cascading\
+return from every method is __Coat__'s HigherCoating instance\
 Only exception is method classic() which returns back numpy instance\
 
 ### Install
@@ -38,20 +38,19 @@ Coat(url).thresh(125,255).show()
 
 ## Usage
 
+__Content__
 
-__content__
-
-[Core functionalities](#Core-functionalities)
-[Dominance](#Auto-resolver)
-[Array manipulation](#Array-manipulation)
-[Image downloading](#Download-image)
-[Labeling](#Supports-labeling)
-[Color spaces](#Colorspace-change)
-[Helper functions](#Image-processing-helpers)
-[Montage](#Montage)
-[Contours](#Contours)
-[Color filtering](#Replace-particular-color)
-[Motion difference](#Motion-difference)
+[Core functionalities](#Core-functionalities)\
+[Dominance](#Auto-resolver)\
+[Array manipulation](#Array-manipulation)\
+[Image downloading](#Download-image)\
+[Labeling](#Supports-labeling)\
+[Color spaces](#Colorspace-change)\
+[Helper functions](#Image-processing-helpers)\
+[Montage](#Montage)\
+[Contours](#Contours)\
+[Color filtering](#Replace-particular-color)\
+[Motion difference](#Motion-difference)\
 
 ---
 

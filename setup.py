@@ -3,9 +3,9 @@ from distutils.core import setup
 setup(
   name = 'coat',         
   packages = find_packages(),  
-  version = '0.1',      
+  version = '0.2',      
   license='MIT',   
-  download_url = 'https://github.com/moyogatomi/coat/blob/master/dist/coat-0.1.tar.gz',
+  download_url = 'https://github.com/moyogatomi/coat/blob/master/dist/coat-0.2.tar.gz',
   description = 'Wrapper around ndarray and opencv for rapid prototyping',   
   author = 'moyogatomi',                 
   author_email = 'moyogatomi@gmail.com',      
