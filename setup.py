@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'coat',         
   packages = find_packages(),  
-  version = '0.3',    
+  version = '0.4',    
   license='MIT',   
   download_url = 'https://github.com/moyogatomi/coat/blob/master/dist/coat-0.2.tar.gz',
   description = 'Wrapper around ndarray and opencv for rapid prototyping',   
