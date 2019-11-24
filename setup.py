@@ -1,11 +1,17 @@
 from setuptools import setup, find_packages
 from distutils.core import setup
+
+with open('README.md','r') as rm:
+  readme = rm.read()
+
 setup(
   name = 'coat',         
   packages = find_packages(),  
-  version = '0.5',    
-  license='MIT',   
-  download_url = 'https://github.com/moyogatomi/coat/blob/master/dist/coat-0.2.tar.gz',
+  version = '0.6',    
+  license='MIT',  
+  long_description=readme,
+  long_description_content_type='text/markdown',
+  download_url = 'https://github.com/moyogatomi/coat/blob/master/dist/coat-0.6.tar.gz',
   description = 'Wrapper around ndarray and opencv for rapid prototyping',   
   author = 'moyogatomi',                 
   author_email = 'moyogatomi@gmail.com',      
