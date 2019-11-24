@@ -558,7 +558,7 @@ class HigherCoating(Coating):
             self: Description
         """
         self[
-            np.where(np.any(self == past_color, axis=len(self.shape) - 1))
+            np.where(np.all(self == past_color, axis=len(self.shape) - 1))
         ] = future_color
         return dtype(self)
 

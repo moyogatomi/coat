@@ -50,7 +50,7 @@ __Content__
 [Montage](#Montage)\
 [Contours](#Contours)\
 [Color filtering](#Replace-particular-color)\
-[Motion difference](#Motion-difference)\
+[Motion difference](#Motion-difference)
 
 ---
 
@@ -179,6 +179,7 @@ Threshold
 image.thresh(125,255,'thresh_binary').show()
 ```
 ![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/earth_thresh.jpg)
+
 Convolution filtering
 ```python
 image.blur_median
@@ -193,7 +194,7 @@ img.conv(kernel)
 
 ##### Montage
 
-See orignal next to processed image
+See orignal next to processed image\
 we add host (turn on dominance of first image) so we get result in RGB colorspace as our original image is rgb
 ```python
 image.rsize(fx=0.3,fy=0.3).host().join(image.thresh(127,255)).show()
@@ -225,8 +226,10 @@ image.morphologyEx('open',3).show()
 ##### Contours
 ```python
 # Draw quick countours
-thr = image.copy().thresh(200,255)
-contoured = image.copy().host().contours(thr,min_size=5, max_size = 9999999,thickness=2,color = [0,125,255]).show()
+thr = image.thresh(200,255)
+
+# copy 
+contoured = image.copy().contours(thr,min_size=5, max_size = 9999999,thickness=2,color = [0,125,255]).show()
 ```
 ![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/contour1.jpg)
 
@@ -246,10 +249,12 @@ image.filterHsv([36,0,0],[70,255,255],passband=False).show()
 # Passband True:   ++++++|--|++++++ 
 ```
 passband True
+
 ![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/filter_true.jpg)
 
 
 passband False
+
 ![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/filter_false.jpg)
 
 ##### Motion difference
@@ -257,7 +262,6 @@ passband False
 box1 = Coat(np.zeros(shape=[400,400,3])).box((30,30),(250,250),color=[255,125,0])
 box2 = Coat(np.zeros(shape=[400,400,3])).box((30,150),(250,350),color=[255,125,0])
 
-(box1+box2).show()
 motion_diff = box1.motion_difference(box2,val=30).show()
 ```
 ![](https://raw.githubusercontent.com/moyogatomi/coat/master/samples/mdiff.jpg)
