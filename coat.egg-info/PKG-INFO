@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: coat
+Version: 0.1
+Summary: Wrapper around ndarray and opencv for rapid prototyping
+Home-page: UNKNOWN
+Author: moyogatomi
+Author-email: moyogatomi@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: ndarray,opencv,prototyping,image processing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

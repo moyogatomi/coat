@@ -1,0 +1,9 @@
+setup.py
+coat/ImageCoating.py
+coat/__init__.py
+coat/helpers.py
+coat.egg-info/PKG-INFO
+coat.egg-info/SOURCES.txt
+coat.egg-info/dependency_links.txt
+coat.egg-info/requires.txt
+coat.egg-info/top_level.txt
