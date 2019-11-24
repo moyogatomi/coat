@@ -236,7 +236,7 @@ class Coating(np.ndarray):
         return self
 
     #@copy_meta
-    def osize(self, size: tuple) -> 'self':
+    def osize(self, size: tuple) -> 'HigherCoating':
         """Objective resize
         
         Args:
@@ -248,7 +248,7 @@ class Coating(np.ndarray):
         return Coat(cv2.resize(self, size[:2][::-1]))
 
     #@copy_meta
-    def rsize(self, fx: float, fy: float) -> 'self':
+    def rsize(self, fx: float, fy: float) -> 'HigherCoating':
         """Summary
         
         Args:
@@ -256,7 +256,7 @@ class Coating(np.ndarray):
             fy (TYPE): Description
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         return Coat(cv2.resize(self, None, fx=fy, fy=fx))
 
@@ -418,7 +418,7 @@ class HigherCoating(Coating):
         return instance
 
     #@copy_meta
-    def morphologyEx(self, morph: str, kernel: int) -> 'self':
+    def morphologyEx(self, morph: str, kernel: int) -> 'HigherCoating':
         """ morpology
         
         Args:
@@ -426,7 +426,7 @@ class HigherCoating(Coating):
             kernel (int): kernel size. eg: kernel = 3 -> np.ones(3,3)
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         return Coat(
             cv2.morphologyEx(
@@ -436,7 +436,7 @@ class HigherCoating(Coating):
 
     def motion_difference(
         self, array, val=15, max_val=255, dtype=np.float16, output=np.uint8
-    ) -> 'self':
+    ) -> 'HigherCoating':
         """Summary
         
         Args:
@@ -447,7 +447,7 @@ class HigherCoating(Coating):
             output (np.type, optional): As we work with images, uint8 is default value
 
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         array = array.guest()  # Is it required here?
 
@@ -462,7 +462,7 @@ class HigherCoating(Coating):
         return Coat(mask)
 
     #@copy_meta
-    def thresh(self, min_val: int, max_val: int, thresh_type="thresh_binary") -> 'self':
+    def thresh(self, min_val: int, max_val: int, thresh_type="thresh_binary") -> 'HigherCoating':
         """ Threshold values
         
         Args:
@@ -471,7 +471,7 @@ class HigherCoating(Coating):
             thresh_type (str, optional): Description
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         shape = self.shape
         if len(shape) == 2:
@@ -546,7 +546,7 @@ class HigherCoating(Coating):
         return Coat(self)
 
     #@copy_meta
-    def replace(self, past_color: list, future_color: list, dtype=np.uint8) -> 'self':
+    def replace(self, past_color: list, future_color: list, dtype=np.uint8) -> 'HigherCoating':
         """ replace particular color
         
         Args:
@@ -563,18 +563,18 @@ class HigherCoating(Coating):
         return dtype(self)
 
     #@copy_meta
-    def to_color(self, color_transformation: str) -> 'self':
+    def to_color(self, color_transformation: str) -> 'HigherCoating':
         """ Change color space
         
         Args:
             color_transformation (str): predefined string
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         return Coat(cv2.cvtColor(self, self.COLOR_SPACE[color_transformation]))
 
-    def show(self) -> 'self':
+    def show(self) -> 'HigherCoating':
         """ Show array
         
         careful about unsigned8. Show float doesnt show the same image as uin8
@@ -588,18 +588,18 @@ class HigherCoating(Coating):
         return self
 
     #@copy_meta
-    def blur_median(self, value: int) -> 'self':
+    def blur_median(self, value: int) -> 'HigherCoating':
         """ median blur
         
         Args:
             value (int): Description
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         return Coat(cv2.medianBlur(self, value))
     #@copy_meta
-    def filter_bilateral(self, sigmaColor: int, sigmaSpace: int, borderType: int) -> 'self':
+    def filter_bilateral(self, sigmaColor: int, sigmaSpace: int, borderType: int) -> 'HigherCoating':
         """Bilateral filter
         
         Args:
@@ -608,7 +608,7 @@ class HigherCoating(Coating):
             borderType (int): Description
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         # 9,75,75
         return Coat(cv2.bilateralFilter(self, sigmaColor, sigmaSpace, borderType))
@@ -629,7 +629,7 @@ class HigherCoating(Coating):
         cv2.imwrite(filename,self)
         return self
 
-    def extend(self, value: Union[float,int], top=2, bottom=2, left=2, right=2) -> 'self':
+    def extend(self, value: Union[float,int], top=2, bottom=2, left=2, right=2) -> 'HigherCoating':
         """ Extend array borders with contant value
         
         Args:
@@ -657,14 +657,14 @@ class HigherCoating(Coating):
         )
         return self
     #@copy_meta
-    def conv(self, kernel: Union[list,np.ndarray]) -> 'self':
+    def conv(self, kernel: Union[list,np.ndarray]) -> 'HigherCoating':
         """ 2D convolution
         
         Args:
             kernel (Union[list, np.ndarray]): Description
         
         Returns:
-            self: Description
+            HigherCoating: Description
         
         Raises:
             Exception: when no kernel provided
@@ -712,7 +712,7 @@ class HigherCoating(Coating):
         else:
             return corner1, corner2
 
-    def box(self, corner1: tuple, corner2: tuple, color=[255, 255, 255], thickness=2, copy=True) -> 'self':
+    def box(self, corner1: tuple, corner2: tuple, color=[255, 255, 255], thickness=2, copy=True) -> 'HigherCoating':
 
         """ Draw box
         x1,y1 ------    corner1 = (x1,y1)
@@ -729,7 +729,7 @@ class HigherCoating(Coating):
             copy (bool, optional): If you set True, you will get copy, if you set False, boxes are drawn on self
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         corner1, corner2 = self._translate_corners(corner1, corner2)
 
@@ -751,7 +751,7 @@ class HigherCoating(Coating):
         ltype=2,
         font="FONT_HERSHEY_SIMPLEX",
         copy=True,
-    ) -> 'self':
+    ) -> 'HigherCoating':
         """Summary
         up=False -> text hangs on corner
         up=True -> text sits on corner
@@ -809,7 +809,7 @@ class HigherCoating(Coating):
         tcolor=[0, 0, 0],
         text_size=15,
         align="center",
-    ) -> 'self':
+    ) -> 'HigherCoating':
 
         if corner1 is None:
             corner1 = (0, 0)
@@ -874,17 +874,17 @@ class HigherCoating(Coating):
         else:
             return image
 
-    def join(self,other: Union[np.ndarray,'self'],direction=0) -> 'self':
+    def join(self,other: Union[np.ndarray,'HigherCoating'],direction=0) -> 'HigherCoating':
         """ Montage of two images.
 
         Connect two images next to each other
         
         Args:
-            other (Union[np.ndarray, 'self']): Description
+            other (Union[np.ndarray, 'HigherCoating']): Description
             direction (int, optional): to 0 - right or 1 - down
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         grid_direction = {1:(2,1),0:(1,2)}
         if isinstance(other,np.ndarray):
@@ -899,7 +899,7 @@ class HigherCoating(Coating):
         else:
             return self
     #@copy_meta
-    def filter(self,lower: list,upper: list,passband = False) -> 'self':
+    def filter(self,lower: list,upper: list,passband = False) -> 'HigherCoating':
         """ Filter values
         
         Args:
@@ -908,7 +908,7 @@ class HigherCoating(Coating):
             passband (bool, optional): passband -> filter colored interval or everything except colored interval
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         lower = np.array(lower)
         upper = np.array(upper)
@@ -920,7 +920,7 @@ class HigherCoating(Coating):
             return (Coat(cv2.bitwise_and(self,self, mask= np.logical_not(mask).astype(np.uint8))))
 
     #@copy_meta
-    def filterHsv(self,lower: list,upper: list,passband = False) -> 'self':
+    def filterHsv(self,lower: list,upper: list,passband = False) -> 'HigherCoating':
 
         """Filter values ( It is expected you have BGR)
         BGR->HSV transformation
@@ -931,7 +931,7 @@ class HigherCoating(Coating):
             passband (bool, optional): passband -> filter colored interval or everything except colored interval
         
         Returns:
-            self: Description
+            HigherCoating: Description
         
         """
         lower = np.array(lower)
@@ -976,7 +976,7 @@ class Montage:
                 for v in range(vertical):
                     yield v, h
 
-    def grid(self, vertical: int, horizontal: int, direction=0) -> 'self':
+    def grid(self, vertical: int, horizontal: int, direction=0) -> 'HigherCoating':
         """ Create montage
         
         Args:
@@ -985,7 +985,7 @@ class Montage:
             direction (int, optional): 0 right to left, 1 top to down
         
         Returns:
-            self: Description
+            HigherCoating: Description
         """
         if self.tpl is None:
             self.tpl = self.images[0]
@@ -1012,39 +1012,14 @@ class Montage:
                 break
         return Coat(montage)
 
-    def template(self, template: Union[np.ndarray,'self']) -> 'self':
+    def template(self, template: Union[np.ndarray,'HigherCoating']) -> 'HigherCoating':
         """ Set Montage cell common standard
         
         Args:
-            template (Union[np.ndarray, 'self']): If you add array of shape 100,100,3, you will have RGB montage
+            template (Union[np.ndarray, 'HigherCoating']): If you add array of shape 100,100,3, you will have RGB montage
         
         Returns:
             self: Description
         """
         self.tpl = template
         return self
-
-if __name__ == '__main__':
-    url = "https://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/dogs_1280p_0.jpg?itok=4t_1_fSJ"
-    # original = Coat(url).host().rsize(fx=0.3,fy=0.3)
-    # print(original.dominant)
-    # gray = original.to_color('BGR2GRAY').rsize(fx=0.3,fy=0.3).host()
-
-    # print(original.dominant)
-
-    # print('a',gray.copy().thresh(125,255).blur_median(9).guest().dominant)
-    # print(original.host().dominant)
-    # print(gray.dominant)
-
-    # print('b',gray.dominant)
-    # print('c',original.dominant)
-
-    a = Coat(url).host()
-    b = a.thresh(125,255).show()
-    #print(a.dominant,b.dominant)
-    #print((a.host()+b).dominant)
-    print('---------------------------------')
-    print((b).dominant)
-    print('---------------------------------')
-    print(np.uint8(a).dominant)
-    Coat(a.pil()).show()
