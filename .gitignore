@@ -2,3 +2,4 @@ __pycache__/
 video-samples/
 *.mp4
 build/
+playground.py

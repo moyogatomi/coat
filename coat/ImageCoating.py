@@ -434,6 +434,20 @@ class HigherCoating(Coating):
             )
         )
 
+
+
+    def edge(self):
+
+        pass
+    def HighlightLines(self):
+        # Draw the lines
+            # Probabilistic Line Transform
+        linesP = cv2.HoughLinesP(dst, 1, np.pi / 180, 50, None, 50, 10)
+        if linesP is not None:
+            for i in range(0, len(linesP)):
+                l = linesP[i][0]
+                cv2.line(cdstP, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
+
     def motion_difference(
         self, array, val=15, max_val=255, dtype=np.float16, output=np.uint8
     ) -> 'HigherCoating':
@@ -449,7 +463,8 @@ class HigherCoating(Coating):
         Returns:
             HigherCoating: Description
         """
-        array = array.guest()  # Is it required here?
+        if not isinstance(array,HigherCoating):
+            array = Coat(array).guest()  # Is it required here?
 
         mask = np.zeros(shape=self.shape[:2], dtype=np.uint8)
         if len(self.shape) == 3:
