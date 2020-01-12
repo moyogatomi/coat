@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
-
+import cv2
+from coat import Coat
 
 def grad_kernel(core):
     core = np.array(core)
@@ -76,25 +76,25 @@ def quiver(image,fraction=10,scale=5):
             except Exception as e:
                 print(e)
     return new_image
+if __name__ == '__main__':
 
-from coat import Coat
-
-import cv2
-
-
+    from coat import Coat
+    import cv2
 
 
 
-img_url = 'https://i.stack.imgur.com/OZuBo.png'
-img_url = 'gimage.png'
-image = Coat(img_url).to_color('BGR2GRAY').rsize(fx=1,fy=1).astype(np.float32)/255.
-# image.show()
-# #Jx,Jy = np.gradient(image,edge_order=1)
 
-quiver(image,fraction=3,scale=5).show()
-# fig, ax = plt.subplots()
 
-# s = ax.quiver(Jx.classic(),Jy.classic(),color='g')
+    img_url = 'https://i.stack.imgur.com/OZuBo.png'
+    img_url = 'gimage.png'
+    image = Coat(img_url).to_color('BGR2GRAY').rsize(fx=1,fy=1).astype(np.float32)/255.
+    # image.show()
+    # #Jx,Jy = np.gradient(image,edge_order=1)
 
-# plt.imshow(image,cmap='gray', vmin=0, vmax=1)
-# plt.show()
+    quiver(image,fraction=3,scale=5).show()
+    # fig, ax = plt.subplots()
+
+    # s = ax.quiver(Jx.classic(),Jy.classic(),color='g')
+
+    # plt.imshow(image,cmap='gray', vmin=0, vmax=1)
+    # plt.show()
