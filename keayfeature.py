@@ -71,9 +71,29 @@ class KeyDescriptor:
         # plt.show()
         return phase, phase_to_shift
 
-def normalize(K1,K2):
+    def main_frame(self,t = 'superior'):
+        K = self.key()
+        K_ma = self.moving_average(K,1)
+        if t == 'superior':
+            self.K =  self.normalize_superion(K_ma)
+        else:
+            self.K =  self.normalize_inferion(K_ma)
+
+    def corre_with(self,K_I):
+        cross_correlation = np.correlate(self.K,K_I, "full")
+        x_cross_corr = np.linspace(-360,360,cross_correlation.shape[0])
+
+        phase = x_cross_corr[np.argmax(cross_correlation)]
+
+
+        phase_to_index = int(phase*self.K.shape[0]/360)
+        print(phase,phase_to_index)
+
+
+def normalize(K1,K2, arg = 0):
+    print(K1.shape[0])
     K1_cor = (K1 - np.mean(K1)) / (np.std(K1) * K1.shape[0])
-    K2_cor = (K2 - np.mean(K2)) /  np.std(K2)
+    K2_cor = (K2 - np.mean(K2)) /  (np.std(K2))
     return K1_cor, K2_cor
 
     
@@ -92,12 +112,17 @@ img_45[img_45<0] = 0
 from tqdm import tqdm
 import time
 s = time.time()
-for i in (range(200)):
+for i in (range(1)):
     Jx,Jy,G,tan,atan = compute_gradient(Coat(img_45),gradient_operator=[1,1],smooth=True,gauss_kernel=3)
     K1 = KeyDescriptor(None,G[120:220,120:200],tan[120:200,120:200],bins=bins)
     Jx,Jy,G,tan,atan = compute_gradient(img,gradient_operator=[1,1],smooth=True,gauss_kernel=3)
 
     K2 = KeyDescriptor(None,G[120:200,120:200],tan[120:200,120:200],bins=bins)
+
+    K1.main_frame(t='superior')
+    K2.main_frame()
+    K1.corre_with(K2.K)
+
 
     def moving_average(x, w):
         return np.convolve(x, np.ones(w), 'valid') / w
@@ -115,13 +140,14 @@ for i in (range(200)):
     x_cross_corr = np.linspace(-360,360,cross_correlation.shape[0])
 
     phase = x_cross_corr[np.argmax(cross_correlation)]
-
+    print(phase)
 
     phase_to_index = int(phase*bins/360)
 
-    # plt.plot(np.linspace(0,360,bins),K1_v,'r')
-    # plt.plot(np.linspace(0,360,bins),np.roll(K2_v,int(phase_to_index)),'b')
-    # plt.show()
+    plt.plot(np.linspace(0,360,bins),K1_v,'r')
+    plt.plot(np.linspace(0,360,bins),np.roll(K2_v,int(phase_to_index)),'b')
+    plt.show()
+
 
 print(time.time()-s)
     #print(np.corrcoef(K1_cor,np.roll(K2_v,int(phase_to_index))))
