@@ -18,7 +18,7 @@ setup(
   url = 'https://github.com/moyogatomi/coat',   
   keywords = ['ndarray', 'opencv', 'prototyping','image processing'], 
   install_requires=[
-"Pillow==6.2.0","numpy==1.17.2","opencv-python==4.1.1.26","pafy==0.5.4","requests==2.22.0","tqdm==4.36.1","urllib3==1.25.6","validators"],
+"Pillow==9.3.0","numpy==1.17.2","opencv-python==4.1.1.26","pafy==0.5.4","requests==2.22.0","tqdm==4.36.1","urllib3==1.25.6","validators"],
     classifiers=[
     'Programming Language :: Python :: 3.6',     
     'Programming Language :: Python :: 3.7',
